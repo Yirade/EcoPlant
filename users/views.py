@@ -107,3 +107,13 @@ class DeviceSensorDataView(ListAPIView):
             return SensorData.objects.filter(device__device_id=device_id)
         else:
             return SensorData.objects.none()
+
+class UserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            'username': user.username,
+            'email': user.email,
+        })
