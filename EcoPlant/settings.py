@@ -29,9 +29,11 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1'
 ]
+# SECURITY WARNING: it is recommended to manually set ALLOWED_HOSTS in CORS_ORIGIN_WHITELIST
+# CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
-    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1'
+    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1', 'localhost:3000', 'ecoplant.yirade.dev'
 ]
 
 
