@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-*^i&^t&dtfzt@b(z%33s^nhuno36hy77y4mn^*v9g9o8=jd@j)
 DEBUG = True
 
 Hosts = [
-    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1', 'localhost:3000', 'ecoplant.yirade.dev', 'http://localhost:3000', 'http://127.0.0.1:3000'
+    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1', 'ecoplant.yirade.dev', 'localhost:3000', '127.0.0.1:3000'
 ]
 
 ALLOWED_HOSTS = Hosts
