@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-*^i&^t&dtfzt@b(z%33s^nhuno36hy77y4mn^*v9g9o8=jd@j)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecoplant-back.yirade.dev', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1'
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1'
+]
 
 
 # Application definition

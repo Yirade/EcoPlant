@@ -117,3 +117,4 @@ class UserDetailView(APIView):
             'username': user.username,
             'email': user.email,
         })
+    
