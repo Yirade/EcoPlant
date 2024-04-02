@@ -26,16 +26,17 @@ SECRET_KEY = 'django-insecure-*^i&^t&dtfzt@b(z%33s^nhuno36hy77y4mn^*v9g9o8=jd@j)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1'
+Hosts = [
+    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1', 'localhost:3000', 'ecoplant.yirade.dev', 'http://localhost:3000', 'http://127.0.0.1:3000'
 ]
+
+ALLOWED_HOSTS = Hosts
 # SECURITY WARNING: it is recommended to manually set ALLOWED_HOSTS in CORS_ORIGIN_WHITELIST
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = [
-    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1', 'localhost:3000', 'ecoplant.yirade.dev'
-]
+CORS_ORIGIN_WHITELIST = Hosts
 
+CORS_ALLOWED_ORIGINS = Hosts
 
 # Application definition
 
