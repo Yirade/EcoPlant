@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-*^i&^t&dtfzt@b(z%33s^nhuno36hy77y4mn^*v9g9o8=jd@j)
 DEBUG = True
 
 Hosts = [
-    'ecoplant-back.yirade.dev', 'localhost', '127.0.0.1', 'ecoplant.yirade.dev', 'localhost:3000', '127.0.0.1:3000'
+    'http://ecoplant-back.yirade.dev', 'http://localhost', 'http://127.0.0.1', 'http://ecoplant.yirade.dev', 'http://localhost:3000', 'http://127.0.0.1:3000'
 ]
 
 ALLOWED_HOSTS = Hosts
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
