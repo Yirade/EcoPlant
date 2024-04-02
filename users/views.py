@@ -5,6 +5,7 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.generics import ListAPIView
 from django.http import JsonResponse
 from rest_framework.views import APIView
@@ -15,6 +16,13 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Device, SensorData
 from .serializers import UserLoginSerializer, UserRegistrationSerializer, SensorDataSerializer, DeviceSerializer
 
+class TokenCheckView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({'valid': True}, status=status.HTTP_200_OK)
+    
 class LoginView(APIView):
     permission_classes = (permissions.AllowAny,)
 
