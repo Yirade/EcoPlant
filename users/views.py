@@ -49,7 +49,14 @@ class RegistrationView(APIView):
                 "refresh": str(refresh),
                 "access": str(refresh.access_token),
             }, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            errors = serializer.errors
+            if 'username' in errors and 'A user with that username already exists.' in errors['username']:
+                return Response({'detail': 'A user with that username already exists.'}, status=status.HTTP_409_CONFLICT)
+            elif 'email' in errors and 'Enter a valid email address.' in errors['email']:
+                return Response({'detail': 'Enter a valid email address.'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response(errors, status=status.HTTP_400_BAD_REQUEST)
     
 def api_key_required(f):
     def wrap(request, *args, **kwargs):
