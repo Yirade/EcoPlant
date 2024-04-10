@@ -113,16 +113,19 @@ class UserDevicesView(ListAPIView):
         user = self.request.user
         return Device.objects.filter(owner=user)
     
-class DeviceSensorDataView(ListAPIView):
+
+class DeviceSensorDataView(APIView):
     serializer_class = SensorDataSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        device_id = self.request.query_params.get('device_id')
-        if device_id:
-            return SensorData.objects.filter(device__device_id=device_id)
-        else:
-            return SensorData.objects.none()
+    def post(self, request, *args, **kwargs):
+        device_id = request.data.get('device_id')
+        if not device_id:
+            raise NotFound(detail="Device ID not provided")
+
+        sensor_data = SensorData.objects.filter(device__device_id=device_id)
+        serializer = self.serializer_class(sensor_data, many=True)
+        return Response(serializer.data)
 
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated]
