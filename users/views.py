@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from .serializers import SensorDataSerializer
 from .authentication import APIKeyAuthentication
 from rest_framework.permissions import IsAuthenticated
+from .mqtt_utils import publish_command_to_device
 from .models import Device, SensorData
 from .serializers import UserLoginSerializer, UserRegistrationSerializer, SensorDataSerializer, DeviceSerializer
 
@@ -133,3 +134,11 @@ class UserDetailView(APIView):
             'email': user.email,
         })
     
+class DeviceCommandView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, *args, **kwargs):
+        device_id = request.data.get('device_id')
+        command = request.data.get('command')
+        publish_command_to_device(device_id, command)
+        return Response({'message': 'Command sent successfully'}, status=200)

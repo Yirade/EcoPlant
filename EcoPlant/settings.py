@@ -152,3 +152,11 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+# MQTT settings
+MQTT_BROKER_ADDRESS = '90.84.239.31'
+MQTT_BROKER_PORT = 1883
+MQTT_USERNAME = 'ecoplant'
+MQTT_PASSWORD = 'Yirade2002'
+MQTT_KEEPALIVE_INTERVAL = 60
+
