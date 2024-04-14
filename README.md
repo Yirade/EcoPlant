@@ -63,7 +63,7 @@
     - `air_humidity`: float
     - `soil_moisture`: float
     - `water_level`: float
-    - `light`: float
+    - `light`: bool
 - **Description**: Adds sensor data for a specific device.
 - **Example Body**:
     ```json
@@ -73,7 +73,7 @@
         "air_humidity": 45.0,
         "soil_moisture": 30.0,
         "water_level": 75.0,
-        "light": 100.0
+        "light": true
     }
     ```
 
@@ -146,5 +146,3 @@
         "command": "examplecommand"
     }
     ```
-
-Please replace the URLs with the actual URLs of your API. The URLs provided here are placeholders and may not correspond to the actual URLs in your application.
