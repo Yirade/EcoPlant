@@ -19,8 +19,11 @@ class Device(models.Model):
 class SensorData(models.Model):
     device = models.ForeignKey(Device, related_name='sensor_data', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
-    temperature = models.FloatField(null=True, blank=True)
-    humidity = models.FloatField(null=True, blank=True)
+    air_temperature = models.FloatField(null=True, blank=True)
+    air_humidity = models.FloatField(null=True, blank=True)
+    soil_moisture = models.FloatField(null=True, blank=True)
+    water_level = models.FloatField(null=True, blank=True)
+    light = models.BooleanField(null=True, blank=True)
     # Add here other fields for the data that your device collects
 
     def __str__(self):

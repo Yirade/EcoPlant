@@ -36,7 +36,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 class SensorDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = SensorData
-        fields = ['temperature', 'humidity', 'timestamp']
+        fields = ['air_temperature', 'air_humidity', 'soil_moisture', 'water_level', 'light']
 
 class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
