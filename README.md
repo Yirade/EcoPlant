@@ -1,8 +1,45 @@
 # EcoPlant
 
-# API Endpoints
+## To-Do
+- [x] Dokerize project
+- [ ] Migrate to Postgres DB (acctually SQLite)
+- [ ] Implement AI
+  
+## Deployment
 
-## Login
+compose.yaml
+
+```yaml
+version: "3"
+services:
+  db:
+    image: postgres:14.1
+    environment:
+      POSTGRES_DB: ecoplant
+      POSTGRES_USER: ecoplant
+      POSTGRES_PASSWORD: ecoplant
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 7432:5432
+  backend:
+    build:
+      context: https://github.com/Yirade/EcoPlant.git
+      dockerfile: src/Dockerfile
+    ports:
+      - 8070:8000
+    env_file:
+      - .env
+    depends_on:
+      - db
+volumes:
+  pgdata: null
+networks: {}
+```
+
+## API Endpoints
+
+### Login
 
 - **URL**: `/login/`
 - **Method**: `POST`
@@ -19,7 +56,7 @@
     }
     ```
 
-## Registration
+### Registration
 
 - **URL**: `/register/`
 - **Method**: `POST`
@@ -38,21 +75,21 @@
     }
     ```
 
-## Token Refresh
+### Token Refresh
 
 - **URL**: `/token/refresh/`
 - **Method**: `POST`
 - **Auth required**: YES
 - **Description**: Refreshes the JWT token.
 
-## Token Check
+### Token Check
 
 - **URL**: `/token/check/`
 - **Method**: `GET`
 - **Auth required**: YES
 - **Description**: Verifies if the provided JWT token is valid.
 
-## Device Data
+### Device Data
 
 - **URL**: `/device-data/`
 - **Method**: `POST`
@@ -77,14 +114,14 @@
     }
     ```
 
-## User Device Data
+### User Device Data
 
 - **URL**: `/user-device-data/`
 - **Method**: `GET`
 - **Auth required**: YES
 - **Description**: Returns all sensor data for all devices of the authenticated user.
 
-## Device Registration
+### Device Registration
 
 - **URL**: `/register-device/`
 - **Method**: `POST`
@@ -101,14 +138,14 @@
     }
     ```
 
-## User Devices
+### User Devices
 
 - **URL**: `/user-devices/`
 - **Method**: `GET`
 - **Auth required**: YES
 - **Description**: Returns all devices of the authenticated user.
 
-## Device Sensor Data
+### Device Sensor Data
 
 - **URL**: `/device-sensor-data/`
 - **Method**: `POST`
@@ -123,14 +160,14 @@
     }
     ```
 
-## User Detail
+### User Detail
 
 - **URL**: `/user-detail/`
 - **Method**: `GET`
 - **Auth required**: YES
 - **Description**: Returns the details of the authenticated user.
 
-## Device Command
+### Device Command
 
 - **URL**: `/device-command/`
 - **Method**: `POST`
