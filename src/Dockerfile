@@ -1,24 +1,21 @@
 # syntax=docker/dockerfile:1.4
 
 FROM --platform=$BUILDPLATFORM python:3.9-alpine AS builder
-EXPOSE 8000
-WORKDIR /src 
-COPY requirements.txt /src
+
+WORKDIR /app
+
+COPY src/requirements.txt .
+
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev openssl-dev python3-dev cargo
+
 RUN pip3 install -r requirements.txt --no-cache-dir
-COPY . /src
-ENTRYPOINT ["python3"] 
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
 
-FROM builder as dev-envs
-RUN <<EOF
-apk update
-apk add git
-EOF
+COPY src/ .
 
-RUN <<EOF
-addgroup -S docker
-adduser -S --shell /bin/bash --ingroup docker vscode
-EOF
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
+EXPOSE 8000
+
+WORKDIR /app/EcoPlant/src
+
+ENTRYPOINT ["python3"]
+
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
