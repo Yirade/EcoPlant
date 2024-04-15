@@ -14,7 +14,7 @@ COPY src/ .
 
 EXPOSE 8000
 
-WORKDIR /app/EcoPlant/src
+# CMD ["tail", "-f", "/dev/null"]
 
 ENTRYPOINT ["python3"]
 
